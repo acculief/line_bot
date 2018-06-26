@@ -48,7 +48,9 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
+  encoding: utf8
+  adapter: postgresql
   database: line_bot_production
   username: line_bot
+  pool: 5
   password: <%= ENV['LINE_BOT_DATABASE_PASSWORD'] %>

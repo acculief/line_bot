@@ -36,10 +36,11 @@ events.each { |event|
         #テキストメッセージが送られた場合、そのままおうむ返しする
         when Line::Bot::Event::MessageType::Text
           qiita_res = []
-          qiita_res = search(input_text).map {|items| "#{items['title']} #{items['url']}"}
+          qiita_res = search(input_text)
+          qiita_reses = qiita_res.map {|items| "#{items['title']} #{items['url']}"}
            message = {
                 type: 'text',
-                text: qiita_res
+                text: qiita_reses.to_s
                 }
 
         #画像が送られた場合、適当な画像を送り返す

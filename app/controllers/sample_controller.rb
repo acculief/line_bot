@@ -4,6 +4,6 @@ include QiitaApiManager
     hoges = []
     hoges = search("hoge")
     kami = hoges.map {|items| "#{items['title']} #{items['url']}"}
-    render json: { status: 200 , message: kami }
+    render json: { message: kami.to_s }
   end
 end

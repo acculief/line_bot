@@ -38,9 +38,10 @@ events.each { |event|
           qiita_res = []
           qiita_res = search(input_text)
           qiita_reses = qiita_res.map {|items| "#{items['title']} #{items['url']}"}
+          puts qiita_reses
            message = {
                 type: 'text',
-                text: qiita_reses.to_s
+                text: input_text
                 }
 
         #画像が送られた場合、適当な画像を送り返す

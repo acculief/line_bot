@@ -1,5 +1,5 @@
 class WebhookController < ApplicationController
-
+include QiitaApiManager
 protect_from_forgery :except => [:callback]
 
 require 'line/bot'
@@ -35,9 +35,11 @@ events.each { |event|
       case event.type
         #テキストメッセージが送られた場合、そのままおうむ返しする
         when Line::Bot::Event::MessageType::Text
+          qiita_res = []
+          qiita_res = search(input_text).map {|items| "#{items['title']} #{items['url']}"}
            message = {
                 type: 'text',
-                text: input_text
+                text: qiita_res
                 }
 
         #画像が送られた場合、適当な画像を送り返す
